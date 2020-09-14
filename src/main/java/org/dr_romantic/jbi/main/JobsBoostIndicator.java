@@ -2,6 +2,7 @@ package org.dr_romantic.jbi.main;
 
 
 import me.TechsCode.UltraPermissions.UltraPermissions;
+import me.TechsCode.UltraPermissions.base.loader.SpigotLoader;
 import me.TechsCode.UltraPermissions.storage.objects.Permission;
 import me.TechsCode.UltraPermissions.storage.objects.User;
 import org.bukkit.Bukkit;
@@ -47,7 +48,8 @@ public class JobsBoostIndicator extends JavaPlugin {
         }else {
             name = ((Player) sender).getName();
         }
-        User user = UltraPermissions.getAPI().getUsers().name(name);
+        UltraPermissions uperm = new UltraPermissions((JavaPlugin) Bukkit.getPluginManager().getPlugin("UltraPermissions"));
+        User user = uperm.getUsers().name(name);
         Bukkit.getConsoleSender().sendMessage(user.toString());
         List<Permission> userPerms = user.getAllPermissions().get();
         boolean nowIn = false;
