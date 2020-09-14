@@ -50,11 +50,9 @@ public class JobsBoostIndicator extends JavaPlugin {
         }
         UltraPermissions uperm = new UltraPermissions((JavaPlugin) Bukkit.getPluginManager().getPlugin("UltraPermissions"));
         User user = uperm.getUsers().name(name);
-        Bukkit.getConsoleSender().sendMessage(user.toString());
         List<Permission> userPerms = user.getAllPermissions().get();
         boolean nowIn = false;
         for(Permission each : userPerms){
-            Bukkit.getConsoleSender().sendMessage(each.getName());
             if(each.getName().contains("jobs.boost.all.all.")){
                 String date = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(each.getExpiration()));
                 sender.sendMessage(prefix+ net.md_5.bungee.api.ChatColor.GOLD + " 현재 이용 중인 직업 부스트의 만기: " +net.md_5.bungee.api.ChatColor.of(new Color(0,255,182)) + date);

@@ -1,7 +1,7 @@
 name: JobsBoostIndicator
 description: JobsBoostIndicator that shows boost status of Jobs
 main: org.dr_romantic.jbi.main.JobsBoostIndicator
-version: 1.0.1
+version: 1.0.2
 api-version: 1.13
 authors: [DrRomantic, Anco]
 softdepend: [Jobs]
