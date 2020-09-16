@@ -2,7 +2,6 @@ package org.dr_romantic.jbi.main;
 
 
 import me.TechsCode.UltraPermissions.UltraPermissions;
-import me.TechsCode.UltraPermissions.base.loader.SpigotLoader;
 import me.TechsCode.UltraPermissions.storage.objects.Permission;
 import me.TechsCode.UltraPermissions.storage.objects.User;
 import org.bukkit.Bukkit;
@@ -35,7 +34,7 @@ public class JobsBoostIndicator extends JavaPlugin {
             sender.sendMessage(prefix + ChatColor.RED+"이 명령어는 플레이어에 의해서만 실행될 수 있습니다.");
             return true;
         }
-        if(!label.equalsIgnoreCase("직업부스트") && !label.equals("jb") && !label.equals("jobsboost") && !label.equals("직부")){
+        if(!label.equalsIgnoreCase("직업부스트") && !label.equals("jb") && !label.equals("직부")){
             return true;
         }
 
@@ -49,12 +48,20 @@ public class JobsBoostIndicator extends JavaPlugin {
             name = ((Player) sender).getName();
         }
         UltraPermissions uperm = new UltraPermissions((JavaPlugin) Bukkit.getPluginManager().getPlugin("UltraPermissions"));
-        User user = uperm.getUsers().name(name);
-        List<Permission> userPerms = user.getAllPermissions().get();
+        User user = uperm.getUsers().name(name).orElse(null);
+        if(user == null){
+            return true;
+        }
+        List<Permission> userPerms = user.getPermissions();
         boolean nowIn = false;
         for(Permission each : userPerms){
             if(each.getName().contains("jobs.boost.all.all.")){
-                String date = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(each.getExpiration()));
+                String date;
+                if(each.getExpiration() == 0) //check if this permission is permanent
+                    date = ChatColor.translateAlternateColorCodes('&', "&2&l무제한");
+                else
+                    date = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(each.getExpiration()));
+
                 sender.sendMessage(prefix+ net.md_5.bungee.api.ChatColor.GOLD + " 현재 이용 중인 직업 부스트의 만기: " +net.md_5.bungee.api.ChatColor.of(new Color(0,255,182)) + date);
                 long gap = (each.getExpiration() - System.currentTimeMillis()) / 1000;
                 long days = gap / 86400;

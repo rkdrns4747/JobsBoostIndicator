@@ -6,7 +6,7 @@
 
     <groupId>org.dr_romantic</groupId>
     <artifactId>JobsBoostIndicator</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
     <repositories>
         <!-- This adds the Spigot Maven repository to the build -->
         <repository>
@@ -28,7 +28,7 @@
             <groupId>me.TechsCode</groupId>
             <scope>system</scope>
             <systemPath>${basedir}/lib/UltraPermissions.jar</systemPath>
-            <version>4.1.2</version>
+            <version>4.8.0</version>
         </dependency>
     </dependencies>
 
