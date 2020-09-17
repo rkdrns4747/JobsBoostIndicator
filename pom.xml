@@ -6,7 +6,7 @@
 
     <groupId>org.dr_romantic</groupId>
     <artifactId>JobsBoostIndicator</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <repositories>
         <!-- This adds the Spigot Maven repository to the build -->
         <repository>
